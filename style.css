@@ -4,7 +4,7 @@ body {
     background-color: #000;
     color: #fff;
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow: hidden;
     height: 100vh;
     animation: fadeIn 2.5s ease-out forwards;
@@ -34,7 +34,6 @@ header {
     text-transform: uppercase;
 }
 
-/* ОГРОМНОЕ ЛОГО */
 .dc-logo {
     height: 80px; 
     filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
@@ -47,10 +46,11 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
+    padding-top: 100px;
 }
 
-/* Стальные сердца (64 шт) */
+/* Стальные сердца */
 .heart {
     position: absolute;
     font-size: 24px;
@@ -60,9 +60,9 @@ header {
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
     animation: fall 14s linear infinite;
     opacity: 0;
+    pointer-events: none;
 }
 
-/* Распределяем 64 сердца по горизонтали и времени */
 .heart:nth-child(8n) { left: 5%; animation-delay: 0s; }
 .heart:nth-child(8n+1) { left: 18%; animation-delay: 2s; }
 .heart:nth-child(8n+2) { left: 32%; animation-delay: 4s; }
@@ -82,16 +82,17 @@ header {
 .profile-card {
     background: rgba(10, 10, 10, 0.95);
     width: 500px;
-    padding: 70px;
+    padding: 50px 70px;
     border-radius: 40px;
     text-align: center;
     border: 1px solid #222;
     backdrop-filter: blur(25px);
     box-shadow: 0 0 60px rgba(255, 255, 255, 0.03);
+    z-index: 10;
 }
 
 .pentagram {
-    width: 150px;
+    width: 120px;
     animation: spin 30s linear infinite;
     filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.15));
 }
@@ -99,8 +100,8 @@ header {
 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
 .username {
-    font-size: 50px;
-    margin: 35px 0;
+    font-size: 44px;
+    margin: 25px 0 10px 0;
     letter-spacing: 4px;
     animation: float 4s ease-in-out infinite;
     text-shadow: 0 0 25px rgba(255, 255, 255, 0.7);
@@ -108,7 +109,49 @@ header {
 
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
-.coder-info { font-size: 20px; color: #555; margin-bottom: 50px; }
+.coder-info { font-size: 18px; color: #555; margin-bottom: 30px; }
+
+/* Стили для QR-кода внутри контейнера Solyaniu */
+.telegram-container {
+    margin: 20px auto 40px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.qr-wrapper {
+    width: 180px;
+    height: 180px;
+    background: white;
+    padding: 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.qr-wrapper:hover {
+    transform: scale(1.05);
+}
+
+.tg-qr { 
+    /* Даже если фото 2212x2235, оно впишется в 180x180 */
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.telegram-username {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 15px;
+    background: linear-gradient(90deg, #fff, #444);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
 .wanna-talk {
     background: transparent;
@@ -122,25 +165,18 @@ header {
     transition: 0.4s;
 }
 
-.wanna-talk:hover { background: #fff; color: #000; box-shadow: 0 0 40px #fff; transform: scale(1.05); }
-
-.telegram-container {
-    position: fixed;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
+.wanna-talk:hover { 
+    background: #fff; 
+    color: #000; 
+    box-shadow: 0 0 40px #fff; 
+    transform: scale(1.05); 
 }
 
-.tg-qr { width: 150px; border-radius: 20px; filter: brightness(1.1); }
-
-.telegram-username {
-    font-size: 26px;
-    font-weight: bold;
-    margin-top: 20px;
-    background: linear-gradient(90deg, #fff, #444);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.stars { 
+    position: fixed; 
+    width: 100%; 
+    height: 100%; 
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/123163/stars.png') repeat; 
+    z-index: -1; 
+    opacity: 0.2; 
 }
-
-.stars { position: fixed; width: 100%; height: 100%; background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/123163/stars.png') repeat; z-index: -1; opacity: 0.2; }
